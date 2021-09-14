@@ -1,6 +1,6 @@
 # Project exclude paths
 /target/
-!/active_match.txt
-!/next_match.txt
-!/participants.txt
-!/tournament.txt
+/active_match.txt
+/next_match.txt
+/participants.txt
+/tournament.txt
