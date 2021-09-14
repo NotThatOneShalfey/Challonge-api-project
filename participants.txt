@@ -1,1 +1,0 @@
-[{"id":1,"name":"Shalfey 1","specification":"(Хаш)"},{"id":2,"name":"Shalfey 2","specification":"(Хаш)"},{"id":3,"name":"Shalfey 3","specification":"(Хаш)"},{"id":4,"name":"Shalfey 4","specification":"(Хаш)"}]

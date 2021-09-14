@@ -1,6 +1,8 @@
-# Project exclude paths
+# Default ignored files
+/shelf/
 /target/
-active_match.txt
-next_match.txt
-participants.txt
-tournament.txt
+/.idea/
+/next_match.txt
+/active_match.txt
+/tournament.txt
+/participants.txt
