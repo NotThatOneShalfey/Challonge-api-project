@@ -5,6 +5,7 @@ import Challonge.Entities.Participant;
 import Challonge.Exceptions.ParticipantNotFoundException;
 import Challonge.Exceptions.TournamentNotFoundException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -101,6 +102,7 @@ public class ParticipantsCore {
 
     @PostConstruct
     public void init() {
+        jsonMapper.enable(SerializationFeature.INDENT_OUTPUT);
         instance = this;
     }
 }
