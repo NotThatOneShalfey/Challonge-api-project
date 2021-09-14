@@ -1,5 +1,6 @@
 # Project exclude paths
 /target/
+.idea
 active_match.txt
 next_match.txt
 participants.txt
