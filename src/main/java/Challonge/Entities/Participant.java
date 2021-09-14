@@ -3,12 +3,14 @@ package Challonge.Entities;
 import Challonge.Configuration.AppConfiguration;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Data
+@NoArgsConstructor
 public class Participant {
     private int id;
     private String name = "";

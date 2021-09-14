@@ -96,6 +96,13 @@ public class MatchesCore {
                         match.setParticipant_2(participant);
                     }
                 }
+                if (match.getParticipant_1() == null) {
+                    match.setParticipant_1(new Participant());
+                }
+                if (match.getParticipant_2() == null) {
+                    match.setParticipant_2(new Participant());
+                }
+
                 if (matchObject.get("suggested_play_order").equals(JSONObject.NULL)) {
                     match.setOrder(order + 1);
                 }
@@ -264,7 +271,7 @@ public class MatchesCore {
             for (Match match : orderedMatchList) {
                 String participant1Name;
                 String participant2Name;
-                if (match.getParticipant_1() == null) {
+                if (match.getParticipant_1().getName().isEmpty()) {
                     participant2Name = match.getParticipant_2().getName().toLowerCase(Locale.ROOT);
                     if (participant2Name.contains(participantName.toLowerCase(Locale.ROOT))) {
                         matchesByParticipant.add(match);
@@ -272,7 +279,7 @@ public class MatchesCore {
                                 incompleteMatchesByParticipant.add(match);
                         }
                     }
-                } else if (match.getParticipant_2() == null) {
+                } else if (match.getParticipant_2().getName().isEmpty()) {
                     participant1Name = match.getParticipant_1().getName().toLowerCase(Locale.ROOT);
                     if (participant1Name.contains(participantName.toLowerCase(Locale.ROOT))) {
                         matchesByParticipant.add(match);
@@ -294,14 +301,14 @@ public class MatchesCore {
         }
         else {
             for (Match match : matchesList) {
-                if (match.getParticipant_1() == null) {
+                if (match.getParticipant_1().getName().isEmpty()) {
                     if (match.getParticipant_2().getName().toLowerCase(Locale.ROOT).contains(participantName.toLowerCase(Locale.ROOT))) {
                         matchesByParticipant.add(match);
                         if (match.getIsComplete()) {
                             incompleteMatchesByParticipant.add(match);
                         }
                     }
-                } else if (match.getParticipant_2() == null) {
+                } else if (match.getParticipant_2().getName().isEmpty()) {
                     if (match.getParticipant_1().getName().toLowerCase(Locale.ROOT).contains(participantName.toLowerCase(Locale.ROOT))) {
                         matchesByParticipant.add(match);
                         if (match.getIsComplete()) {

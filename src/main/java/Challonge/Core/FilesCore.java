@@ -37,7 +37,7 @@ public class FilesCore {
             for (Match match : MatchesCore.getInstance().getOrderedMatchList()) {
                 if (!match.getIsComplete() && !match.getIsActive()) {
                     StringBuilder sb = new StringBuilder();
-                    if (match.getParticipant_1() == null) {
+                    if (match.getParticipant_1().getName().isEmpty()) {
                         sb.append("Player yet unknown");
                     }
                     else {
@@ -45,7 +45,7 @@ public class FilesCore {
                         sb.append(match.getParticipant_1().getSpecification());
                     }
                     sb.append(" vs ");
-                    if (match.getParticipant_2() == null) {
+                    if (match.getParticipant_2().getName().isEmpty()) {
                         sb.append("Player yet unknown");
                     }
                     else {
@@ -62,7 +62,7 @@ public class FilesCore {
             for (Match match : MatchesCore.getInstance().getMatchesList()) {
                 if (!match.getIsComplete() && !match.getIsActive()) {
                     StringBuilder sb = new StringBuilder();
-                    if (match.getParticipant_1() == null) {
+                    if (match.getParticipant_1().getName().isEmpty()) {
                         sb.append("Player yet unknown");
                     }
                     else {
@@ -70,7 +70,7 @@ public class FilesCore {
                         sb.append(match.getParticipant_1().getSpecification());
                     }
                     sb.append(" vs ");
-                    if (match.getParticipant_2() == null) {
+                    if (match.getParticipant_2().getName().isEmpty()) {
                         sb.append("Player yet unknown");
                     }
                     else {
@@ -89,7 +89,7 @@ public class FilesCore {
         for (Match match : MatchesCore.getInstance().getMatchesList()) {
             if (match.getIsActive()) {
                 StringBuilder sb = new StringBuilder();
-                if (match.getParticipant_1() == null) {
+                if (match.getParticipant_1().getName().isEmpty()) {
                     sb.append("Player yet unknown");
                 }
                 else {
@@ -97,7 +97,7 @@ public class FilesCore {
                     sb.append(match.getParticipant_1().getSpecification());
                 }
                 sb.append(" vs ");
-                if (match.getParticipant_2() == null) {
+                if (match.getParticipant_2().getName().isEmpty()) {
                     sb.append("Player yet unknown");
                 }
                 else {
@@ -119,13 +119,20 @@ public class FilesCore {
                 JSONObject jsonObject = new JSONObject(obj.toString());
                 Match match = new Match(jsonObject.getInt("id"));
 
-                Participant participant1 = new Participant(jsonObject.getJSONObject("participant_1").getInt("id"));
-                participant1.setName(jsonObject.getJSONObject("participant_1").getString("name"));
-                participant1.setSpecification(jsonObject.getJSONObject("participant_1").getString("specification"));
+                Participant participant1 = new Participant();
+                Participant participant2 = new Participant();
 
-                Participant participant2 = new Participant(jsonObject.getJSONObject("participant_2").getInt("id"));
-                participant2.setName(jsonObject.getJSONObject("participant_2").getString("name"));
-                participant2.setSpecification(jsonObject.getJSONObject("participant_2").getString("specification"));
+                if (!jsonObject.get("participant_1").equals(JSONObject.NULL)) {
+                    participant1.setId(jsonObject.getJSONObject("participant_1").getInt("id"));
+                    participant1.setName(jsonObject.getJSONObject("participant_1").getString("name"));
+                    participant1.setSpecification(jsonObject.getJSONObject("participant_1").getString("specification"));
+                }
+
+                if (!jsonObject.get("participant_2").equals(JSONObject.NULL)) {
+                    participant2.setId(jsonObject.getJSONObject("participant_2").getInt("id"));
+                    participant2.setName(jsonObject.getJSONObject("participant_2").getString("name"));
+                    participant2.setSpecification(jsonObject.getJSONObject("participant_2").getString("specification"));
+                }
 
                 match.setParticipant_1(participant1);
                 match.setParticipant_2(participant2);

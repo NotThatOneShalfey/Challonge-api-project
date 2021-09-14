@@ -47,7 +47,8 @@ public class ProcessCore {
     @PostConstruct
     public void init() throws IOException {
         instance = this;
-        if (AppConfiguration.getInstance().isDownloadCustomTournament()) {
+        if (AppConfiguration.getInstance().isDownloadCustomTournament() && AppConfiguration.getInstance().getTournament() == null) {
+            log.info("<----- custom tournament downloaded from file ----->");
             FilesCore.getInstance().downloadTournamentFromFiles();
         }
     }

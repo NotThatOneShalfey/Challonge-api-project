@@ -2,6 +2,7 @@ package Challonge.Configuration;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpEntity;
@@ -15,6 +16,7 @@ import java.util.Collections;
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "challonge-api")
+@Slf4j
 public class AppConfiguration {
     @Getter
     private static AppConfiguration instance;
@@ -43,6 +45,15 @@ public class AppConfiguration {
     public void init() {
         headers.setBasicAuth(account, apiKey);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+        log.debug("<----- startup parameters ----->");
+        log.debug("generateFiles is {}", generateFiles);
+        log.debug("saveCustomTournament is {}", saveCustomTournament);
+        log.debug("downloadCustomTournament is {}", downloadCustomTournament);
+        log.debug("ordered is {}", ordered);
+        log.debug("tournamentID is {}", tournament);
+        log.debug("scheduling is {}", scheduling);
+        log.debug("<------------------------------>");
         instance = this;
     }
 
